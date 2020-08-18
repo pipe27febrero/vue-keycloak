@@ -1,13 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
-import * as Keycloak from 'keycloak-js'
-import vuetify from './plugins/vuetify';
-Vue.config.productionTip = false
-let initOptions = {
-  url: 'http://rc.keycloak.ledpack.cl/auth', realm: 'Demo-Realm', clientId: 'vue-test-app', onLoad:'login-required'
-}
-let keycloak = Keycloak(initOptions);
 
+// import * as Keycloak from 'keycloak-js'
+import vuetify from './plugins/vuetify';
+
+import router from './router'
+Vue.config.productionTip = false
+/* let initOptions = {
+  url: 'http://rc.keycloak.ledpack.cl/auth', realm: 'Demo-Realm', clientId: 'vue-test-app', onLoad:'login-required'
+} */
+// let keycloak = Keycloak(initOptions);
+
+new Vue({
+  vuetify,
+  router,
+  render: h => h(App)
+}).$mount('#app')
+/*
 keycloak.init({ onLoad: initOptions.onLoad }).success((auth) =>{
     
   if(!auth) {
@@ -16,10 +25,6 @@ keycloak.init({ onLoad: initOptions.onLoad }).success((auth) =>{
     console.log('authenticated')
   }
 
-  new Vue({
-    vuetify,
-    render: h => h(App)
-  }).$mount('#app')
 
 
   localStorage.setItem("vue-token", keycloak.token);
@@ -44,3 +49,4 @@ keycloak.init({ onLoad: initOptions.onLoad }).success((auth) =>{
   )
 
 })
+*/
